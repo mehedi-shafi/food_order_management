@@ -16,14 +16,15 @@ int order ()
     gets (p[order_count].name);
     p[order_count].order_number = 10000+order_count;
     items();
-
+    p[order_count].number_of_food = n;
+    p[order_count].cost = 0;
+    p[order_count].number_of_food = 0;
+    
+    level:
     printf ("How many items you want to order? ");
     scanf ("%d", &n);
 
     getchar ();
-    p[order_count].number_of_food = n;
-    p[order_count].cost = 0;
-    p[order_count].number_of_food = 0;
     while (n--){
         printf ("\nEnter chosen item code\n");
         scanf ("%d", &in);
@@ -198,6 +199,11 @@ int order ()
     }
         }
     }
+    char temp;
+    printf ("Do you want to order anything else?(y/n)\n ");
+    scanf("%c", &temp);
+    if (temp == 'y' || temp == 'Y')
+        goto level;
     printf ("\nNumber of food ordered %d\n", p[order_count].number_of_food);
     printf ("\nThank you %s for your order. Your bill is %dtk.\nPlease wait while we prepare the food.\n\n", p[order_count].name, p[order_count].cost);
     order_count ++;
